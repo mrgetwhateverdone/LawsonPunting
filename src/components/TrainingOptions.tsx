@@ -55,14 +55,19 @@ const TrainingOptions = () => {
   return (
     // This part of the code is the main container for the training options section.
     // It has an ID for direct navigation, padding, and a light background.
-    <section id="training" className="py-12 md:py-20 bg-gray-50 px-4">
+    // Changed from bg-gray-50 to white for a lighter feel
+    <section id="training" className="py-12 md:py-20 bg-white px-4">
       {/* This part of the code is an inner container for managing width and centering. */}
       <div className="container mx-auto">
         {/* This part of the code is the title for the section.
             It's centered and styled with a large, bold font. */}
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-12">
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-4">
           Our Training Packages
         </h2>
+        {/* Added a subtitle for additional context */}
+        <p className="text-lg text-gray-600 text-center max-w-3xl mx-auto mb-12">
+          Choose from our selection of specialized training sessions designed to elevate your game.
+        </p>
         {/* This part of the code creates a grid layout for the training option cards.
             It uses Tailwind's grid utilities for responsiveness: 1 column on small screens,
             2 on medium, and 3 on large screens, with spacing between cards. */}
@@ -71,36 +76,45 @@ const TrainingOptions = () => {
               to create a card for each training option. */}
           {trainingOptionsData.map((option) => (
             // This part of the code defines a single training option card.
-            // It's styled with a white background, rounded corners, shadow, and padding.
-            // It uses flexbox to arrange content vertically and ensure the button is at the bottom.
+            // Enhanced card with border, improved spacing, and hover effects
             <div
               key={option.id}
-              className="bg-white rounded-lg shadow-lg p-6 flex flex-col justify-between hover:shadow-xl transition-shadow duration-300"
+              className="bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 p-8 flex flex-col justify-between hover:translate-y-[-4px] overflow-hidden relative"
             >
+              {/* Added a subtle accent color at the top of each card */}
+              <div className="absolute top-0 left-0 w-full h-1 bg-cyan-500"></div>
               <div>
                 {/* This part of the code displays the title and duration of the training option. */}
-                <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                <h3 className="text-xl font-semibold text-gray-800 mb-3">
                   {option.duration ? `${option.duration} ` : ""}
                   {option.title}
                 </h3>
                 {/* This part of the code displays the description of the training option. */}
-                <p className="text-gray-600 mb-4 text-sm">
+                <p className="text-gray-600 mb-6">
                   {option.description}
                 </p>
               </div>
               <div>
                 {/* This part of the code displays the price of the training option. */}
-                <p className="text-2xl font-bold text-blue-600 mb-6">
+                <p className="text-3xl font-bold text-gray-800 mb-6 flex items-baseline">
                   {option.price}
                   {option.priceDetails && (
-                    <span className="text-sm font-normal text-gray-500">
+                    <span className="text-sm font-normal text-gray-500 ml-1">
                       {option.priceDetails}
                     </span>
                   )}
                 </p>
-                {/* This part of the code is a call-to-action button for booking the session. */}
-                <button className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300">
-                  Book This Session
+                {/* This part of the code is a call-to-action button for booking the session.
+                    Enhanced with better animations and more elegant styling */}
+                <button className="group w-full bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 relative overflow-hidden">
+                  {/* Added a sliding animation effect on hover */}
+                  <span className="relative z-10 flex items-center justify-center">
+                    Book This Session
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </span>
+                  <div className="absolute inset-0 h-full w-0 bg-cyan-600 group-hover:w-full transition-all duration-300 z-0"></div>
                 </button>
               </div>
             </div>
